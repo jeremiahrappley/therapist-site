@@ -1,0 +1,51 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-stone-900 text-stone-300">
+  <div class="max-w-5xl mx-auto px-6 py-14">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <!-- Brand -->
+      <div>
+        <p class="font-display text-white text-lg font-semibold mb-3">Dr. Jane Doe, LMHC</p>
+        <p class="text-stone-400 text-sm leading-relaxed">
+          Individual therapy for adults navigating anxiety, life transitions, and the complexity of being human.
+        </p>
+      </div>
+
+      <!-- Quick links -->
+      <div>
+        <p class="text-white text-sm font-semibold uppercase tracking-wider mb-4">Quick Links</p>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+          <li><a href="/about" class="hover:text-white transition-colors">About</a></li>
+          <li><a href="/approach" class="hover:text-white transition-colors">My Approach</a></li>
+          <li><a href="/contact" class="hover:text-white transition-colors">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <p class="text-white text-sm font-semibold uppercase tracking-wider mb-4">Contact</p>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href="tel:+12395551234" class="hover:text-white transition-colors">(239) 555-1234</a>
+          </li>
+          <li>
+            <a href="mailto:hello@example.com" class="hover:text-white transition-colors">hello@example.com</a>
+          </li>
+          <li class="text-stone-400 pt-1">Telehealth · Florida</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-stone-700 flex flex-col md:flex-row justify-between items-start gap-4">
+      <p class="text-stone-500 text-xs">
+        &copy; {year} Dr. Jane Doe, LMHC. All rights reserved.
+      </p>
+      <p class="text-stone-500 text-xs max-w-md">
+        <strong class="text-stone-400">Privacy notice:</strong> The contact form on this site is not encrypted and is not suitable for protected health information (PHI). Please do not share sensitive medical details via the form.
+      </p>
+    </div>
+  </div>
+</footer>

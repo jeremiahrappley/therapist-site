@@ -1,0 +1,100 @@
+---
+const navLinks = [
+  { href: '/',         label: 'Home' },
+  { href: '/about',    label: 'About' },
+  { href: '/approach', label: 'Approach' },
+  { href: '/contact',  label: 'Contact' },
+];
+
+const current = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-stone-100 shadow-sm">
+  <div class="max-w-5xl mx-auto px-6">
+    <nav class="flex items-center justify-between h-16" aria-label="Main navigation">
+      <!-- Wordmark -->
+      <a href="/" class="font-display text-lg font-semibold text-stone-900 hover:text-sage-700 transition-colors">
+        Dr. Jane Doe, LMHC
+      </a>
+
+      <!-- Desktop links -->
+      <div class="hidden md:flex items-center gap-7">
+        {navLinks.map(({ href, label }) => (
+          <a
+            href={href}
+            class={`text-sm font-medium transition-colors ${
+              current === href
+                ? 'text-sage-700'
+                : 'text-stone-600 hover:text-stone-900'
+            }`}
+            aria-current={current === href ? 'page' : undefined}
+          >
+            {label}
+          </a>
+        ))}
+        <a href="/contact" class="btn-primary text-sm py-2">
+          Get in Touch
+        </a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="menu-btn"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open navigation menu"
+        class="md:hidden p-2 rounded-md text-stone-600 hover:text-stone-900 hover:bg-stone-100 transition-colors"
+      >
+        <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mobile menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden border-t border-stone-100 bg-white"
+    role="menu"
+  >
+    <div class="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-1">
+      {navLinks.map(({ href, label }) => (
+        <a
+          href={href}
+          class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+            current === href
+              ? 'bg-sage-50 text-sage-700'
+              : 'text-stone-700 hover:bg-stone-50 hover:text-stone-900'
+          }`}
+          role="menuitem"
+        >
+          {label}
+        </a>
+      ))}
+      <a href="/contact" class="mt-2 btn-primary text-sm text-center">
+        Get in Touch
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('icon-open');
+  const iconClose = document.getElementById('icon-close');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden', isOpen);
+    iconOpen?.classList.toggle('hidden', !isOpen);
+    iconClose?.classList.toggle('hidden', isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    btn.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
+  });
+</script>
