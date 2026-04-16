@@ -1,0 +1,101 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+import { getCollection, render } from 'astro:content';
+
+const allTechniques = await getCollection('techniques');
+const sorted = allTechniques.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+
+const techniques = await Promise.all(
+  sorted.map(async (entry) => {
+    const { Content } = await render(entry);
+    return { entry, Content };
+  })
+);
+---
+
+<BaseLayout
+  title="My Approach — Dr. Jane Doe, LMHC"
+  description="An overview of the evidence-based therapy approaches used by Dr. Jane Doe — including CBT, EMDR, mindfulness, and ACT."
+>
+  <!-- ─────────────────────────── HEADER ────────────────────────────── -->
+  <section class="bg-white pt-16 pb-12 md:pt-20 md:pb-16 border-b border-stone-100">
+    <div class="max-w-5xl mx-auto px-6">
+      <p class="text-sage-600 text-sm font-medium tracking-widest uppercase mb-4">My approach</p>
+      <h1 class="font-display text-4xl md:text-5xl text-stone-900 leading-tight max-w-xl">
+        Grounded in evidence. Adapted to you.
+      </h1>
+      <p class="text-stone-600 mt-5 max-w-2xl leading-relaxed text-lg">
+        I draw from several well-researched modalities rather than applying a single rigid framework. What we use together will depend on who you are, what you're carrying, and what you're hoping to change.
+      </p>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── TECHNIQUES ────────────────────────── -->
+  <section class="py-20 bg-stone-50">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="space-y-14">
+        {techniques.map(({ entry, Content }, index) => (
+          <article
+            id={entry.slug}
+            class="bg-white rounded-2xl border border-stone-100 overflow-hidden shadow-sm scroll-mt-20"
+          >
+            <div class="p-8 md:p-10">
+              <div class="flex items-start gap-5">
+                <span class="font-display text-4xl text-sage-200 font-semibold leading-none mt-1 select-none flex-shrink-0">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <div class="flex-1 min-w-0">
+                  <h2 class="font-display text-2xl md:text-3xl text-stone-900 mb-3">
+                    {entry.data.title}
+                  </h2>
+                  <p class="text-stone-500 text-base leading-relaxed mb-6 italic">
+                    {entry.data.summary}
+                  </p>
+                  <div class="prose prose-stone prose-sm md:prose-base max-w-none
+                              prose-headings:font-display prose-headings:font-semibold
+                              prose-strong:text-stone-800 prose-strong:font-semibold
+                              prose-p:text-stone-600 prose-p:leading-relaxed
+                              prose-li:text-stone-600
+                              prose-a:text-sage-700 prose-a:no-underline hover:prose-a:underline">
+                    <Content />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── PHILOSOPHY ────────────────────────── -->
+  <section class="py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <SectionHeading eyebrow="My philosophy" class="items-center text-center [&>div]:mx-auto">
+        The approach behind the approach.
+      </SectionHeading>
+      <div class="space-y-5 text-stone-600 leading-relaxed text-lg mt-6">
+        <p>
+          The specific modality we use matters less than the quality of the relationship we build. Research consistently shows that the therapeutic alliance — the sense of trust, safety, and genuine collaboration between client and therapist — is one of the strongest predictors of good outcomes.
+        </p>
+        <p>
+          I bring evidence-based tools because they work. But I bring them through a relationship built on respect, curiosity, and the genuine belief that you are capable of change.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── CTA ──────────────────────────────── -->
+  <section class="bg-sage-900 text-white py-20">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="font-display text-3xl md:text-4xl mb-6">Have questions about my approach?</h2>
+      <p class="text-sage-200 text-lg mb-10 max-w-md mx-auto">
+        The free consultation call is a great place to discuss what kind of therapy might be right for you.
+      </p>
+      <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 bg-white text-sage-900 font-semibold rounded-lg hover:bg-sage-50 transition-colors">
+        Get in touch
+      </a>
+    </div>
+  </section>
+</BaseLayout>

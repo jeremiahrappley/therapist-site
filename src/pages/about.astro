@@ -1,0 +1,175 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import SectionHeading from '@components/SectionHeading.astro';
+---
+
+<BaseLayout
+  title="About — Dr. Jane Doe, LMHC"
+  description="Learn about Dr. Jane Doe, LMHC — a licensed mental health counselor with over a decade of experience in anxiety, trauma, and life transitions therapy."
+>
+  <!-- ─────────────────────────────── HEADER ─────────────────────────── -->
+  <section class="bg-white pt-16 pb-12 md:pt-20 md:pb-16 border-b border-stone-100">
+    <div class="max-w-5xl mx-auto px-6">
+      <p class="text-sage-600 text-sm font-medium tracking-widest uppercase mb-4">About me</p>
+      <h1 class="font-display text-4xl md:text-5xl text-stone-900 leading-tight">
+        Dr. Jane Doe, LMHC
+      </h1>
+      <p class="text-stone-500 mt-2">Licensed Mental Health Counselor · License #XXXXXXX</p>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────────── BIO ───────────────────────────── -->
+  <section class="py-20 bg-stone-50">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-12 items-start">
+        <!-- Photo -->
+        <div class="md:col-span-2">
+          <div class="aspect-[3/4] rounded-2xl bg-sage-100 flex items-center justify-center">
+            <div class="text-center p-8">
+              <div class="w-24 h-24 rounded-full bg-sage-200 mx-auto mb-4 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-sage-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              </div>
+              <p class="text-sage-500 text-sm font-medium">Photo coming soon</p>
+            </div>
+          </div>
+
+          <!-- Quick credentials card -->
+          <div class="mt-6 bg-white border border-stone-100 rounded-xl p-6 space-y-3 text-sm">
+            {[
+              { label: 'License', value: 'LMHC · Florida #XXXXXXX' },
+              { label: 'Education', value: 'M.S. Clinical Mental Health Counseling\n[University Name]' },
+              { label: 'EMDR', value: 'EMDR-trained, EMDRIA member' },
+              { label: 'Modality', value: 'Telehealth · Florida residents' },
+              { label: 'Session fee', value: '$[X] / 50 min · Superbill available' },
+            ].map(({ label, value }) => (
+              <div class="flex gap-3">
+                <span class="text-stone-400 font-medium w-24 flex-shrink-0">{label}</span>
+                <span class="text-stone-700 whitespace-pre-line">{value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Bio text -->
+        <div class="md:col-span-3 space-y-6 text-stone-600 leading-relaxed">
+          <SectionHeading>My story and why I do this work.</SectionHeading>
+
+          <p>
+            I came to therapy work through my own experiences with anxiety and the transformative effect that good therapy had on my life. That personal history shapes how I show up with clients — with genuine curiosity, real warmth, and the conviction that change is possible.
+          </p>
+          <p>
+            For over a decade I've worked with adults across a wide range of life circumstances: the high-achieving professional who can't slow down their mind, the person rebuilding after a difficult relationship, the new parent navigating identity shifts, the individual carrying old wounds that keep surfacing. Whatever brings someone through the door, I meet them where they are.
+          </p>
+          <p>
+            My clinical approach is integrative, meaning I draw from several evidence-based modalities rather than applying one rigid framework. I'm trained in Cognitive Behavioral Therapy (CBT), EMDR, Acceptance and Commitment Therapy (ACT), and mindfulness-based approaches. I tailor what I use to who you are and what you need — your history, your nervous system, your goals.
+          </p>
+          <p>
+            Outside of practice, I find restoration in long walks, cooking, and time with people I love. I share these details because I don't think a therapist's humanity should be invisible — it's part of what allows genuine connection.
+          </p>
+
+          <div class="pt-4">
+            <a href="/contact" class="btn-primary">
+              Work with me &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────────────── VALUES ───────────────────────────── -->
+  <section class="py-20 bg-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <SectionHeading eyebrow="How I work">
+        What you can expect in our work together.
+      </SectionHeading>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 mt-4">
+        {[
+          {
+            title: 'Collaborative',
+            body: 'You are the expert on your own life. My role is to bring curiosity, structure, and evidence-based tools — your role is to bring honesty and courage.',
+          },
+          {
+            title: 'Non-judgmental',
+            body: 'There is nothing you\'ve thought, felt, or done that will change my regard for you. The therapy room is a space for the full truth of your experience.',
+          },
+          {
+            title: 'Goal-oriented',
+            body: 'We\'ll set clear goals at the outset and revisit them regularly. Therapy should move — if it feels stuck, we talk about it and adjust.',
+          },
+          {
+            title: 'Evidence-based',
+            body: 'The approaches I use have robust research support. I stay current through continuing education and supervision, so you benefit from what actually works.',
+          },
+          {
+            title: 'Practical',
+            body: 'Insight matters, but so does change. We\'ll identify skills and experiments you can try between sessions to start building a different way of living.',
+          },
+          {
+            title: 'Culturally aware',
+            body: 'Identity, culture, and social context shape mental health in profound ways. I bring awareness of these dimensions into our work and welcome conversations about how they affect you.',
+          },
+        ].map(({ title, body }) => (
+          <div class="bg-stone-50 rounded-xl p-6">
+            <h3 class="font-display text-lg text-stone-900 mb-2">{title}</h3>
+            <p class="text-stone-600 text-sm leading-relaxed">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────────────────── FAQ ─────────────────────────────── -->
+  <section class="py-20 bg-stone-50">
+    <div class="max-w-3xl mx-auto px-6">
+      <SectionHeading eyebrow="Common questions">
+        Things people often ask.
+      </SectionHeading>
+      <div class="space-y-6 mt-4">
+        {[
+          {
+            q: 'Do you accept insurance?',
+            a: 'I am currently an out-of-network provider. I can provide a monthly superbill that you may submit to your insurance for partial reimbursement, depending on your out-of-network benefits. I recommend calling your insurance to ask about out-of-network mental health coverage before we begin.',
+          },
+          {
+            q: 'How long will therapy take?',
+            a: 'It depends on your goals and history. Some clients find meaningful relief in 8–12 sessions; others work with me for a year or more. We\'ll review progress regularly and you\'re always free to pause or end our work at any time.',
+          },
+          {
+            q: 'What is telehealth therapy like?',
+            a: 'Sessions are conducted over a secure video platform (similar to a video call). Most clients find it just as effective as in-person therapy, with the added benefit of not having to commute. You\'ll need a private space with a reliable internet connection.',
+          },
+          {
+            q: 'What if I\'ve never been to therapy before?',
+            a: 'The first session is a conversation, not an evaluation. Many people feel nervous before their first session — that\'s completely normal. I\'ll walk you through what to expect and we\'ll go at your pace.',
+          },
+        ].map(({ q, a }) => (
+          <details class="bg-white border border-stone-100 rounded-xl p-6 group">
+            <summary class="font-medium text-stone-900 cursor-pointer list-none flex justify-between items-center gap-4">
+              {q}
+              <svg class="w-5 h-5 text-stone-400 flex-shrink-0 group-open:rotate-180 transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="mt-4 text-stone-600 text-sm leading-relaxed">{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────────────────── CTA ───────────────────────────────── -->
+  <section class="bg-sage-900 text-white py-20">
+    <div class="max-w-5xl mx-auto px-6 text-center">
+      <h2 class="font-display text-3xl md:text-4xl mb-6">Ready to get started?</h2>
+      <p class="text-sage-200 text-lg mb-10 max-w-md mx-auto">
+        A 15-minute consultation call is free and comes with no obligation.
+      </p>
+      <a href="/contact" class="inline-flex items-center justify-center px-8 py-4 bg-white text-sage-900 font-semibold rounded-lg hover:bg-sage-50 transition-colors">
+        Reach out today
+      </a>
+    </div>
+  </section>
+</BaseLayout>
